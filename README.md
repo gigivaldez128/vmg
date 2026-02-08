@@ -1,0 +1,57 @@
+# VMG - Friendship Portfolio
+
+A modern, beautiful website celebrating friendship, built with React and Vite.
+
+## Features
+
+- 🎬 **Automatic Video Slideshow** - Showcase friendship moments with smooth transitions
+- 🎵 **Background Music Player** - Continuous music playback with auto-advance
+- 📸 **Memory Gallery** - Grid of photos and videos from your friendship journey
+- 💕 **Friendship Quotes** - Inspirational quotes about friendship
+- 🎨 **Modern UI Design** - Beautiful gradient themes with glassmorphism effects
+- 📱 **Fully Responsive** - Works perfectly on all devices
+
+## Tech Stack
+
+- React 19
+- Vite
+- Framer Motion (animations)
+- Tailwind CSS
+- React Icons
+
+## Getting Started
+
+1. Install dependencies:
+```bash
+npm install
+```
+
+2. Run the development server:
+```bash
+npm run dev
+```
+
+3. Build for production:
+```bash
+npm run build
+```
+
+## Project Structure
+
+- `/src/features` - Main feature components (Hero, Gallery, About, Slideshow, Quotes)
+- `/src/components` - Reusable components (Navbar, Music Player, UI components)
+- `/public/music` - Background music files
+- `/public/video` - Video files for slideshow
+- `/public/image` - Image files for gallery
+
+## Music Files
+
+Add your music files to `/public/music/` directory. The player supports:
+- LAKEY INSPIRED - The Process
+- Bruno Mars - Count on Me
+- Good Old Days (feat. Kesha)
+- With a Smile - South Border
+
+## License
+
+Made with 💕 by Three Best Friends
