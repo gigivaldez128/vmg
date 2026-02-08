@@ -4,7 +4,6 @@ import Gallery from './features/gallery/Gallery';
 import About from './features/about/About';
 import Slideshow from './features/slideshow/Slideshow';
 import Quotes from './features/quotes/Quotes';
-import MusicPlayer from './components/music/MusicPlayer';
 
 function App() {
   return (
@@ -18,11 +17,8 @@ function App() {
         <Quotes />
       </main>
 
-      {/* Music Player */}
-      <MusicPlayer />
-
       {/* Footer */}
-      <footer className="bg-gradient-to-t from-surface to-background py-12 border-t border-white/5 text-center relative overflow-hidden pb-24">
+      <footer className="bg-gradient-to-t from-surface to-background py-12 border-t border-white/5 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="mb-6">

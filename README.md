@@ -46,11 +46,7 @@ npm run build
 
 ## Music Files
 
-Add your music files to `/public/music/` directory. The player supports:
-- LAKEY INSPIRED - The Process
-- Bruno Mars - Count on Me
-- Good Old Days (feat. Kesha)
-- With a Smile - South Border
+The player uses **URL-safe filenames** so music works on Vercel: `music1.mp3`, `music2.mp3`, `music3.mp3`, `music4.mp3` in `/public/music/`.
 
 ## License
 

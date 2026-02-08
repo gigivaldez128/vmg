@@ -11,32 +11,13 @@ const MusicPlayer = () => {
     const [progress, setProgress] = useState(0);
     const audioRef = useRef(null);
 
-    // Music playlist - Automatically plays next song when current one ends
+    // Use URL-safe filenames (no spaces/special chars) so Vercel serves them correctly.
+    // In public/music/ use: music1.mp3, music2.mp3, music3.mp3, music4.mp3
     const playlist = [
-        {
-            title: 'The Process',
-            artist: 'LAKEY INSPIRED',
-            src: '/music/LAKEY INSPIRED - The Process.mp3',
-            cover: '/image/1.jpg'
-        },
-        {
-            title: 'Count on Me',
-            artist: 'Bruno Mars',
-            src: '/music/bruno mars  count on me   lyrics.mp3',
-            cover: '/image/2.jpg'
-        },
-        {
-            title: 'Good Old Days',
-            artist: 'feat. Kesha',
-            src: '/music/Good Old Days (feat. Kesha).mp3',
-            cover: '/image/3.jpg'
-        },
-        {
-            title: 'With a Smile',
-            artist: 'South Border',
-            src: '/music/WITH A SMILE  SOUTH BORDER (Lyrics).mp3',
-            cover: '/image/4.jpg'
-        }
+        { title: 'The Process', artist: 'LAKEY INSPIRED', src: '/music/music1.mp3', cover: '/image/1.jpg' },
+        { title: 'Count on Me', artist: 'Bruno Mars', src: '/music/music2.mp3', cover: '/image/2.jpg' },
+        { title: 'Good Old Days', artist: 'feat. Kesha', src: '/music/music3.mp3', cover: '/image/3.jpg' },
+        { title: 'With a Smile', artist: 'South Border', src: '/music/music4.mp3', cover: '/image/4.jpg' },
     ];
 
     // Initialize audio
@@ -72,13 +53,16 @@ const MusicPlayer = () => {
 
     // Load new track when currentTrack changes
     useEffect(() => {
-        if (audioRef.current && playlist[currentTrack]) {
-            audioRef.current.src = playlist[currentTrack].src;
-            if (isPlaying) {
-                audioRef.current.play().catch(() => {
-                    console.log('Autoplay prevented. User interaction required.');
-                });
-            }
+        const audio = audioRef.current;
+        const track = playlist[currentTrack];
+        if (!audio || !track) return;
+
+        audio.src = track.src;
+
+        if (isPlaying) {
+            audio.play().catch(() => {
+                console.log('Autoplay prevented. User interaction required.');
+            });
         }
     }, [currentTrack, isPlaying, playlist]);
 
@@ -124,14 +108,18 @@ const MusicPlayer = () => {
 
     return (
         <>
-            {/* Hidden Audio Element */}
+            {/* Hidden Audio Element - encode URLs for Vercel compatibility */}
             <audio
                 ref={audioRef}
-                preload="auto"
+                preload="metadata"
                 onLoadedMetadata={() => {
                     if (isPlaying && audioRef.current) {
                         audioRef.current.play().catch(() => {});
                     }
+                }}
+                onError={(e) => {
+                    console.warn('Audio load failed:', playlist[currentTrack]?.src);
+                    setCurrentTrack((prev) => (prev + 1) % playlist.length);
                 }}
             />
 
