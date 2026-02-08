@@ -1,4 +1,5 @@
-import { motion as Motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 const media = [
     { type: 'image', src: '1.jpg' },
@@ -56,6 +57,40 @@ const media = [
 ];
 
 const Gallery = () => {
+    const [fullscreen, setFullscreen] = useState(null); // { type, src, index }
+
+    const openFullscreen = (item, index) => {
+        setFullscreen({ type: item.type, src: item.src, index });
+    };
+
+    const closeFullscreen = () => setFullscreen(null);
+
+    const goPrev = () => {
+        if (fullscreen === null) return;
+        const prevIndex = fullscreen.index === 0 ? media.length - 1 : fullscreen.index - 1;
+        setFullscreen({ ...media[prevIndex], index: prevIndex });
+    };
+
+    const goNext = () => {
+        if (fullscreen === null) return;
+        const nextIndex = fullscreen.index === media.length - 1 ? 0 : fullscreen.index + 1;
+        setFullscreen({ ...media[nextIndex], index: nextIndex });
+    };
+
+    useEffect(() => {
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') closeFullscreen();
+        };
+        if (fullscreen) {
+            document.body.style.overflow = 'hidden';
+            window.addEventListener('keydown', handleEscape);
+        }
+        return () => {
+            document.body.style.overflow = '';
+            window.removeEventListener('keydown', handleEscape);
+        };
+    }, [fullscreen]);
+
     return (
         <section id="gallery" className="py-24 bg-gradient-to-b from-background via-surface/20 to-background relative z-10 overflow-hidden">
             {/* Animated background elements */}
@@ -106,6 +141,7 @@ const Gallery = () => {
                                 scale: 1.05,
                                 transition: { duration: 0.2 }
                             }}
+                            onClick={() => openFullscreen(item, index)}
                             className="relative aspect-[4/5] group overflow-hidden rounded-2xl cursor-pointer"
                         >
                             <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
@@ -147,6 +183,88 @@ const Gallery = () => {
                     ))}
                 </div>
             </div>
+
+            {/* Fullscreen viewer */}
+            <AnimatePresence>
+                {fullscreen && (
+                    <Motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm"
+                        onClick={closeFullscreen}
+                    >
+                        <Motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="relative max-w-[95vw] max-h-[95vh] w-full h-full flex items-center justify-center p-4"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {fullscreen.type === 'video' ? (
+                                <video
+                                    src={`/video/${fullscreen.src}`}
+                                    controls
+                                    autoPlay
+                                    loop
+                                    muted={false}
+                                    playsInline
+                                    className="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
+                                />
+                            ) : (
+                                <img
+                                    src={`/image/${fullscreen.src}`}
+                                    alt={`Memory ${fullscreen.index + 1}`}
+                                    className="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain"
+                                    onClick={(e) => e.stopPropagation()}
+                                />
+                            )}
+
+                            {/* Close button */}
+                            <button
+                                onClick={closeFullscreen}
+                                className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+                                aria-label="Close"
+                            >
+                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+
+                            {/* Prev / Next */}
+                            {media.length > 1 && (
+                                <>
+                                    <button
+                                        onClick={goPrev}
+                                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+                                        aria-label="Previous"
+                                    >
+                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                        </svg>
+                                    </button>
+                                    <button
+                                        onClick={goNext}
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+                                        aria-label="Next"
+                                    >
+                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </>
+                            )}
+
+                            {/* Counter */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/80 text-sm">
+                                {fullscreen.index + 1} / {media.length}
+                            </div>
+                        </Motion.div>
+                    </Motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };

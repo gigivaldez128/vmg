@@ -2,6 +2,7 @@ import Navbar from './components/layout/Navbar';
 import Hero from './features/hero/Hero';
 import Gallery from './features/gallery/Gallery';
 import About from './features/about/About';
+import Story from './features/story/Story';
 import Slideshow from './features/slideshow/Slideshow';
 import Quotes from './features/quotes/Quotes';
 
@@ -13,6 +14,7 @@ function App() {
         <Hero />
         <Gallery />
         <About />
+        <Story />
         <Slideshow />
         <Quotes />
       </main>
