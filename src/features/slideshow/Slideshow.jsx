@@ -150,10 +150,10 @@ const Slideshow = () => {
                             onClick={prevSlide}
                             onMouseEnter={() => setIsPaused(true)}
                             onMouseLeave={() => setIsPaused(false)}
-                            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 z-30 group"
+                            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] w-11 h-11 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 active:bg-white/25 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 z-30 group touch-manipulation"
                             aria-label="Previous slide"
                         >
-                            <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
                         </button>
@@ -161,18 +161,18 @@ const Slideshow = () => {
                             onClick={nextSlide}
                             onMouseEnter={() => setIsPaused(true)}
                             onMouseLeave={() => setIsPaused(false)}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 z-30 group"
+                            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] w-11 h-11 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 active:bg-white/25 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 z-30 group touch-manipulation"
                             aria-label="Next slide"
                         >
-                            <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
                         </button>
 
-                        {/* Play/Pause Button */}
+                        {/* Play/Pause Button - touch-friendly */}
                         <button
                             onClick={() => setIsPaused(!isPaused)}
-                            className="absolute top-4 right-4 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 z-30 group"
+                            className="absolute top-2 right-2 sm:top-4 sm:right-4 min-h-[44px] min-w-[44px] w-11 h-11 sm:w-12 sm:h-12 bg-white/10 hover:bg-white/20 active:bg-white/25 backdrop-blur-md rounded-full flex items-center justify-center transition-all duration-300 z-30 group touch-manipulation"
                             aria-label={isPaused ? 'Play slideshow' : 'Pause slideshow'}
                         >
                             {isPaused ? (
@@ -187,21 +187,25 @@ const Slideshow = () => {
                         </button>
                     </div>
 
-                    {/* Slide Indicators */}
-                    <div className="flex justify-center gap-3 mt-8">
+                    {/* Slide Indicators - touch-friendly 44px tap target */}
+                    <div className="flex justify-center gap-1 sm:gap-3 mt-6 sm:mt-8">
                         {slides.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => goToSlide(index)}
                                 onMouseEnter={() => setIsPaused(true)}
                                 onMouseLeave={() => setIsPaused(false)}
-                                className={`h-2 rounded-full transition-all duration-300 ${
-                                    index === currentSlide
-                                        ? 'w-12 bg-gradient-to-r from-primary to-secondary'
-                                        : 'w-2 bg-white/30 hover:bg-white/50'
-                                }`}
+                                className="min-h-[44px] min-w-[44px] flex items-center justify-center touch-manipulation hover:opacity-90"
                                 aria-label={`Go to slide ${index + 1}`}
-                            />
+                            >
+                                <span
+                                    className={`block h-2 rounded-full transition-all duration-300 ${
+                                        index === currentSlide
+                                            ? 'w-8 sm:w-12 bg-gradient-to-r from-primary to-secondary'
+                                            : 'w-2 bg-white/30'
+                                    }`}
+                                />
+                            </button>
                         ))}
                     </div>
 

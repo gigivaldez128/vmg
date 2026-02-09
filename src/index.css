@@ -5,12 +5,19 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply overflow-x-hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
     @apply bg-background text-text-primary font-sans antialiased overflow-x-hidden;
   }
-  
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading text-white;
+  }
+  /* Touch-friendly: remove 300ms tap delay on clickable elements */
+  button, a, [role="button"] {
+    touch-action: manipulation;
   }
 }
 
@@ -73,4 +80,12 @@
 
 .animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Safe area for notched devices (e.g. iPhone) */
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+}
+.safe-area-padding {
+  padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
 }

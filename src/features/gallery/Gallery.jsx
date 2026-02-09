@@ -192,7 +192,7 @@ const Gallery = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm"
+                            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-sm p-4 sm:p-6 safe-area-padding"
                         onClick={closeFullscreen}
                     >
                         <Motion.div
@@ -200,7 +200,7 @@ const Gallery = () => {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="relative max-w-[95vw] max-h-[95vh] w-full h-full flex items-center justify-center p-4"
+                            className="relative max-w-full max-h-[85vh] sm:max-h-[90vh] w-full h-full flex items-center justify-center p-2 sm:p-4"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {fullscreen.type === 'video' ? (
@@ -222,43 +222,43 @@ const Gallery = () => {
                                 />
                             )}
 
-                            {/* Close button */}
+                            {/* Close button - touch-friendly */}
                             <button
                                 onClick={closeFullscreen}
-                                className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+                                className="absolute top-2 right-2 sm:top-4 sm:right-4 min-h-[44px] min-w-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/25 flex items-center justify-center transition-colors z-10 touch-manipulation"
                                 aria-label="Close"
                             >
-                                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
 
-                            {/* Prev / Next */}
+                            {/* Prev / Next - touch-friendly */}
                             {media.length > 1 && (
                                 <>
                                     <button
                                         onClick={goPrev}
-                                        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+                                        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/25 flex items-center justify-center transition-colors z-10 touch-manipulation"
                                         aria-label="Previous"
                                     >
-                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                         </svg>
                                     </button>
                                     <button
                                         onClick={goNext}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors z-10"
+                                        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 min-h-[44px] min-w-[44px] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/10 hover:bg-white/20 active:bg-white/25 flex items-center justify-center transition-colors z-10 touch-manipulation"
                                         aria-label="Next"
                                     >
-                                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                         </svg>
                                     </button>
                                 </>
                             )}
 
-                            {/* Counter */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/80 text-sm">
+                            {/* Counter - above safe area on notched devices */}
+                            <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 text-white/80 text-xs sm:text-sm pb-safe tabular-nums">
                                 {fullscreen.index + 1} / {media.length}
                             </div>
                         </Motion.div>

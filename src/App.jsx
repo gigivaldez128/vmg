@@ -3,6 +3,7 @@ import Hero from './features/hero/Hero';
 import Gallery from './features/gallery/Gallery';
 import About from './features/about/About';
 import Story from './features/story/Story';
+import Book from './features/book/Book';
 import Slideshow from './features/slideshow/Slideshow';
 import Quotes from './features/quotes/Quotes';
 
@@ -15,6 +16,7 @@ function App() {
         <Gallery />
         <About />
         <Story />
+        <Book />
         <Slideshow />
         <Quotes />
       </main>

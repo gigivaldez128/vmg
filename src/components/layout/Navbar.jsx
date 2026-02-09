@@ -20,6 +20,7 @@ const Navbar = () => {
         { name: 'Gallery', href: '#gallery' },
         { name: 'About', href: '#about' },
         { name: 'Story', href: '#story' },
+        { name: 'Book', href: '#book' },
         { name: 'Slideshow', href: '#slideshow' },
         { name: 'Quotes', href: '#quotes' },
     ];
@@ -48,9 +49,9 @@ const Navbar = () => {
                     <Button variant="primary" size="sm" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">Our Story</Button>
                 </div>
 
-                {/* Mobile Toggle */}
+                {/* Mobile Toggle - 44px min touch target */}
                 <button
-                    className="md:hidden text-white text-xl"
+                    className="md:hidden text-white text-xl min-h-[44px] min-w-[44px] flex items-center justify-center -mr-2"
                     onClick={() => setIsOpen(!isOpen)}
                     aria-label="Toggle menu"
                 >
@@ -67,12 +68,12 @@ const Navbar = () => {
                         exit={{ opacity: 0, height: 0 }}
                         className="md:hidden bg-surface border-t border-white/5 overflow-hidden"
                     >
-                        <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
+                        <div className="container mx-auto px-6 py-6 flex flex-col gap-1">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    className="text-lg font-medium text-text-secondary hover:text-white"
+                                    className="text-lg font-medium text-text-secondary hover:text-white py-3 px-2 -mx-2 rounded-lg hover:bg-white/5 min-h-[44px] flex items-center"
                                     onClick={() => setIsOpen(false)}
                                 >
                                     {link.name}

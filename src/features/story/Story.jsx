@@ -35,7 +35,7 @@ const chapters = [
 
 const Story = () => {
     return (
-        <section id="story" className="py-24 bg-gradient-to-b from-background via-surface/20 to-background relative z-10 overflow-hidden">
+        <section id="story" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-background via-surface/20 to-background relative z-10 overflow-hidden px-4 sm:px-6">
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute top-20 right-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute bottom-20 left-20 w-72 h-72 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -47,26 +47,26 @@ const Story = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-20"
+                    className="text-center mb-12 md:mb-20"
                 >
                     <Motion.div
                         initial={{ scale: 0.8 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5 }}
-                        className="inline-block mb-6"
+                        className="inline-block mb-4 md:mb-6"
                     >
-                        <span className="text-6xl">📖</span>
+                        <span className="text-5xl md:text-6xl">📖</span>
                     </Motion.div>
-                    <h2 className="text-4xl md:text-6xl font-bold font-heading mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+                    <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold font-heading mb-4 md:mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent px-2">
                         Our Story
                     </h2>
-                    <p className="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto">
+                    <p className="text-text-secondary text-base md:text-lg lg:text-xl max-w-2xl mx-auto px-2">
                         How three people became best friends—and why we’re never letting go
                     </p>
                 </Motion.div>
 
-                <div className="max-w-3xl mx-auto space-y-8">
+                <div className="max-w-3xl mx-auto space-y-6 md:space-y-8">
                     {chapters.map((chapter, index) => (
                         <Motion.div
                             key={index}
@@ -80,11 +80,11 @@ const Story = () => {
                                 <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/30 flex items-center justify-center text-2xl backdrop-blur-sm">
                                     {chapter.emoji}
                                 </div>
-                                <div className="flex-1 pt-1">
-                                    <h3 className="text-xl md:text-2xl font-bold font-heading text-white mb-3">
+                                <div className="flex-1 pt-1 min-w-0">
+                                    <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-heading text-white mb-2 md:mb-3">
                                         {chapter.title}
                                     </h3>
-                                    <p className="text-text-secondary text-base md:text-lg leading-relaxed">
+                                    <p className="text-text-secondary text-sm sm:text-base md:text-lg leading-relaxed">
                                         {chapter.text}
                                     </p>
                                 </div>

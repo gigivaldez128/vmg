@@ -91,7 +91,7 @@ const About = () => {
                             </h2>
                         </Motion.div>
 
-                        <div className="space-y-4 text-text-secondary text-lg leading-relaxed mb-8">
+                        <div className="space-y-4 text-text-secondary text-base sm:text-lg leading-relaxed mb-8">
                             <p>
                                 Three hearts, one incredible bond. This is the story of a friendship that transcends 
                                 time and distance—one boy and two amazing girls who found each other and created 
@@ -104,18 +104,18 @@ const About = () => {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-3 gap-6 mb-8">
-                            <div className="text-center p-4 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
-                                <h4 className="text-primary font-bold text-2xl mb-1">3</h4>
-                                <p className="text-sm text-text-secondary">Best Friends</p>
+                        <div className="grid grid-cols-3 gap-3 sm:gap-6 mb-8">
+                            <div className="text-center p-3 sm:p-4 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20 min-w-0">
+                                <h4 className="text-primary font-bold text-xl sm:text-2xl mb-0.5 sm:mb-1">3</h4>
+                                <p className="text-xs sm:text-sm text-text-secondary">Best Friends</p>
                             </div>
-                            <div className="text-center p-4 rounded-xl bg-gradient-to-br from-secondary/10 to-transparent border border-secondary/20">
-                                <h4 className="text-secondary font-bold text-2xl mb-1">∞</h4>
-                                <p className="text-sm text-text-secondary">Memories Made</p>
+                            <div className="text-center p-3 sm:p-4 rounded-xl bg-gradient-to-br from-secondary/10 to-transparent border border-secondary/20 min-w-0">
+                                <h4 className="text-secondary font-bold text-xl sm:text-2xl mb-0.5 sm:mb-1">∞</h4>
+                                <p className="text-xs sm:text-sm text-text-secondary">Memories Made</p>
                             </div>
-                            <div className="text-center p-4 rounded-xl bg-gradient-to-br from-accent/10 to-transparent border border-accent/20">
-                                <h4 className="text-accent font-bold text-2xl mb-1">💕</h4>
-                                <p className="text-sm text-text-secondary">Love & Laughter</p>
+                            <div className="text-center p-3 sm:p-4 rounded-xl bg-gradient-to-br from-accent/10 to-transparent border border-accent/20 min-w-0">
+                                <h4 className="text-accent font-bold text-xl sm:text-2xl mb-0.5 sm:mb-1">💕</h4>
+                                <p className="text-xs sm:text-sm text-text-secondary">Love & Laughter</p>
                             </div>
                         </div>
 
